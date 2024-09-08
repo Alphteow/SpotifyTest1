@@ -1,11 +1,11 @@
 import { useState } from "react";
 import api from "../api";
-import { useNavigate } from "react-router-dom"; //get the navigation from code
+import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css"
 import LoadingIndicator from "./LoadingIndicator";
 
-function Form({ route, method }) { //route is route when submitting form, token or register route
+function Form({ route, method }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ function Form({ route, method }) { //route is route when submitting form, token 
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 navigate("/")
-            } else { //if it wasn't login then it would've been register
+            } else {
                 navigate("/login")
             }
         } catch (error) {
@@ -50,7 +50,7 @@ function Form({ route, method }) { //route is route when submitting form, token 
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
-            {loading && <LoadingIndicator/>}
+            {loading && <LoadingIndicator />}
             <button className="form-button" type="submit">
                 {name}
             </button>
