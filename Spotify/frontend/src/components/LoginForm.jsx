@@ -49,17 +49,15 @@ function LoginForm({ route }) {
                 <button className="form-button" type="submit">
                     Login
                 </button>
-
-                {/* Button to navigate to the Register page */}
-                <div className="register-link">
-                    <p>Don't have an account?</p>
-                    <Link to="/register">
-                        <button className="form-button">Register</button>
-                    </Link>
-                </div>
             </form>
 
-            
+            {/* Button to navigate to the Register page */}
+            <div className="register-link">
+                <p>Don't have an account?</p>
+                <Link to="/register">
+                    <button className="form-button">Register</button>
+                </Link>
+            </div>
         </div>
     );
 }
