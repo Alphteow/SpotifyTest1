@@ -5,6 +5,17 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
 
+const SPOTIFY_CLIENT_ID = "3dd5ac2ac81e46679663572c2de294fe";  // Replace with your Spotify Client ID
+const SPOTIFY_REDIRECT_URI = "http://127.0.0.1:8000";  // Update with your callback URI
+const SCOPES = [
+    "user-read-email",
+    "user-read-private",
+    "playlist-read-private",
+    "user-library-read",
+].join("%20");
+
+const SPOTIFY_AUTH_URL = `https://accounts.spotify.com/authorize?response_type=code&client_id=${SPOTIFY_CLIENT_ID}&scope=${SCOPES}&redirect_uri=${encodeURIComponent(SPOTIFY_REDIRECT_URI)}`;
+
 function LoginForm({ route }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -25,6 +36,11 @@ function LoginForm({ route }) {
         } finally {
             setLoading(false);
         }
+    };
+
+    // Handle Spotify login redirection
+    const handleSpotifyLogin = () => {
+        window.location.href = SPOTIFY_AUTH_URL;  // Redirect to Spotify authorization page
     };
 
     return (
@@ -50,6 +66,17 @@ function LoginForm({ route }) {
                     Login
                 </button>
             </form>
+
+            {/* Spotify login button */}
+            <div className="spotify-login">
+                <p>Or login using Spotify:</p>
+                <button
+                    className="spotify-button"
+                    onClick={handleSpotifyLogin}
+                >
+                    Login with Spotify
+                </button>
+            </div>
 
             {/* Button to navigate to the Register page */}
             <div className="register-link">
